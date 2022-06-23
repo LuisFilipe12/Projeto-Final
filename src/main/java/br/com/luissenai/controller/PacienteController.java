@@ -1,5 +1,6 @@
 package br.com.luissenai.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import br.com.luissenai.repositories.PacienteRepository;
 @Controller
 public class PacienteController {
 	
+	@Autowired
 	PacienteRepository ar;
 	//página inicial
 	@RequestMapping("/")
@@ -35,13 +37,13 @@ public class PacienteController {
 	@GetMapping("/add")
 	public String cadastrarPacientes(Model model) {
 		model.addAttribute("paciente", new Paciente());
-		return "cadastrarPaciente";
+		return "cadastrarPacientes"; 
 	}
 	
 	@PostMapping("/processarCadastro")
 	public String processarCadastro(Paciente paciente, BindingResult br) {
 		if(br.hasErrors()) {
-			return "cadastrarPaciente";
+			return "cadastrarPacientes";
 		}
 		ar.save(paciente);
 		return "redirect:/listarPacientes";
@@ -52,7 +54,7 @@ public class PacienteController {
 	public ModelAndView alterarAluno(@PathVariable("id") Integer id) {
 		Paciente paciente = ar.findById(id).get();
 		ModelAndView mv = new ModelAndView("alterarPaciente");
-		mv.addObject("paciente", paciente);
+		mv.addObject("pacientes", paciente);
 		return mv;
 	}
 	
@@ -68,7 +70,7 @@ public class PacienteController {
 	public ModelAndView confirmarExclusaoPaciente(@PathVariable ("id") Integer id) {
 		Paciente paciente = ar.findById(id).get();
 		ModelAndView mv = new ModelAndView("/excluirPaciente");
-		mv.addObject("Paciente", paciente);
+		mv.addObject("Pacientes", paciente);
 		return mv;
 	}
 	
