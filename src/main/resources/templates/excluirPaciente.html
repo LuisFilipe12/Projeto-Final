@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="pt-br" xmlns:th="http://thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8 ">
 <!-- CSS Bootstrap -->
@@ -12,5 +12,69 @@
 </head>
 <body>
 
+	<div class="container-fluid">
+
+		<div>
+			<nav class="navbar navbar-expand-lg bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="/listarPacientes">Espaço Ciclos</a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="/">Início</a></li>
+							<li class="nav-item"><a class="nav-link" href="/add">Cadastrar
+									Paciente</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div class="container">
+				<div class="row">
+					<div class="col col-lg-12">
+						<h1>Deseja excluir ?</h1>
+					</div>
+				</div>
+				<div class="col col-lg-12">
+					<div class="row">
+						<div class="col col-lg-3">
+							ID: <span th:text="${paciente.id}"></span>
+						</div>
+
+						<div class="row">
+							<div class="col col-lg-3">
+								Nome: <span th:text="${paciente.nome}"></span>
+							</div>
+
+							<div class="row">
+								<div class="col col-lg-3">
+									CPF: <span th:text="${paciente.cpf}"></span>
+								</div>
+								<div class="row">
+									<div class="col col-lg-3">
+										Data nasc: <span th:text="${paciente.dataNascimento}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<hr/>
+					<div class="row">
+						<div class="col col-lg-2">
+							<a class="btn btn-danger" th:href="${(#mvc.url('PC#excluirPaciente').arg(0, cliente.id)).build()}" role="button">Sim</a>
+						</div>
+						<div class="col col-lg-2">
+						<a class="btn btn-secondary" href="/" role="button">Não</a>
+						</div>
+					</div>
+				</div>
+			</div>
 </body>
 </html>

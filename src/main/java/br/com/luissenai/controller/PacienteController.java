@@ -70,12 +70,12 @@ public class PacienteController {
 	public ModelAndView confirmarExclusaoPaciente(@PathVariable ("id") Integer id) {
 		Paciente paciente = ar.findById(id).get();
 		ModelAndView mv = new ModelAndView("/excluirPaciente");
-		mv.addObject("Pacientes", paciente);
+		mv.addObject("Paciente", paciente);
 		return mv;
 	}
 	
 	/*Confirmado a exclusçao e salvar no banco de dados*/
-	@RequestMapping("excluirPacientes")
+	@RequestMapping("excluirPaciente")
 	public String excluirPaciente(Integer id) {
 		Paciente paciente = ar.findById(id).get();
 		ar.delete(paciente);

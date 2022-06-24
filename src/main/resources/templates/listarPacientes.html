@@ -37,16 +37,14 @@
 
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="card" style="border: 1px solid black; margin: 10px auto">
-					<div class="card-body" th:each="paciente : ${pacientes}">
-						<h5 class="card-title" th:text="${paciente.nome}"></h5>
-						<p class="card-text" th:text="${paciente.id}"></p>
-						<p class="card-text" th:text="${paciente.cpf}"></p>
-						<p class="card-text" th:text="${paciente.dataNascimeto}"></p>
-						<a th:href="@{alterarPaciente/{id} (id = ${@paciente.id})}"
-							class="btn btn-warning">Alterar dados</a> <a
-							th:href="@{confirmarExclusaoPaciente/{id}(id = ${@paciente.id})}"
-							class="btn btn-danger">Alterar dados</a>
+				<div class="card">
+					<div class="card-body" th:each="paciente : ${pacientes}" style="margin: 10px auto;">
+						<h5 class="card-title" th:inline="text"><strong>Nome:</strong>[[${paciente.nome}]]</h5>
+						<p class="card-text" th:inline="text"><strong>ID:</strong>[[${paciente.id}]]</p>
+						<p class="card-text" th:inline="text"><strong>CPF:</strong>[[${paciente.cpf}]]</p>
+						<p class="card-text" th:inline="text"><strong>Dt nasc:</strong>[[${paciente.dataNascimento}]]</p>
+						<a th:href="@{alterarPaciente/{id} (id = ${paciente.id})}" class="btn btn-warning">Alterar dados</a>
+						<a th:href="@{confirmarExclusaoPaciente/{id}(id = ${paciente.id})}" class="btn btn-danger">Excluir paciente</a>
 					</div>
 				</div>
 			</div>
